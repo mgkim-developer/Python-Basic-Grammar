@@ -15,3 +15,7 @@ if money:
 else:
     print("걸어 가라")
 
+# money에 True를 입력했으므로 money는 참이다. 따라서 if문 다음 문장이 수행되어 '택시를 타고 가라'가 출력된다.
+
+
+
