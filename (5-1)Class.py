@@ -226,5 +226,69 @@ a = FourCal()
 a.setdata(4, 2)
 
 # 2. setdata 메서드의 수행문
+# 이제 setdata 메서드의 수행문에 대해 알아보자
+def setdata(self, first, second):  #1. 메서드의 매개변수
+    self.first = first  #2. 메서드의 수행문
+    self.second = second  #2. 메서드의 수행문
 
+# a.setdata(4, 2)처럼 호출하면 sedata 메서드의 매개변수 first, second에는 각각 값 4와 2가 전달되어 setdata 메서드의 수행문은 다음과 같이 해석된다.
+# self.first = 4
+# self.second = 2
+
+# self는 전달된 객체 a이므로 다시 다음과 같이 해석된다.
+# a.first = 4
+# a.second = 2
+
+# a.first = 4 문장이 수행되면 a 객체에 객체변수 first가 생성되고 값 4가 저장된다.
+# 마찬가지로 a.second = 2 문장이 수행되면 a 객체에 객체변수 second가 생성되고 값 2가 저장된다.
+# ※ 객체에 생성되는 객체만의 변수를 객체변수라고 부른다.
+
+# 다음과 같이 확인해 보자.
+a = FourCal()
+a.setdata(4, 2)
+print(a.first)
+print(a.second)
+# a 객체에 객체변수 first와 second가 생성되었음을 확인할 수 있다.
+
+# 이번에는 다음과 같이 a, b객체를 만들어 보자.
+a = FourCal()
+b = FourCal()
+# 그리고 a 객체의 객체변수 first를 다음과 같이 생성한다.
+a.setdata(4, 2)
+print(a.first)
+# 이번에는 b객체의 객체변수 first를 다음과 같이 생성한다.
+b.setdata(3, 7)
+print(b.first)
+
+# 자 이제 아주 중요한 질문을 한 가지 하겠다.
+# 위와 같이 진행하면 b객체의 객체변수 first에는 값 3이 저장된다는 것을 확인 할 수 있었다.
+# 그렇다면  a객체의 first는 3으로 변할까? 아니면 기존 값 4를 유지할까?
+print(a.first)
+# a객체의 first값은 b객체의 first값에 영향받지 않고 원래 값을 유지하고 있음을 확인할 수 있다.
+# 이 예제를 통해 강조하고싶은 점이 바로 이것이다.
+# 클래스로 만든 객체의 객체변수는 다른 객체의 객체변수에 상관없이 독립적인 값을 유지한다.
+
+# id 함수를 사용하면 객체변수가 독립적인 ㄱ밧을 유지한다는 점을 좀 더 명확하게 증명해 보일 수 있다. 다음과 같이 따라해 보자.
+# ※ id함수는 객체의 주소를 돌려주는 파이썬 내장 함수이다.
+a = FourCal()
+b = FourCal()
+a.setdata(4, 2)
+b.setdata(3, 7)
+print(id(a.first))
+print(id(b.first))
+# a객체의 first 주소 값과 b객체의 first 주소 값이 서로 다르므로 각각 다른 곳에 그 값이 저장된다는 것을 알 수 있다.
+# 객체변수는 그 객체의 고유 값을 저장할 수 있는 공간이다.
+# 객체 변수는 다른 객체들에 영향받지 않고 독립적으로 그 값을 유지한다는 점을 꼭 기억하자.
+# 클래스에서는 이 부분을 이해하는 것이 가장 중요하다.
+
+# 다음은 현재까지 완성된 FourCal 클래스이다.
+class FourCal:
+    def setdata(self, first, second):
+        self.first = first
+        self.second = second
+
+# 지금까지 살펴본 내용이 바로 위 4줄을 설명하기 위함이다.
+# 위에서 설명한 것들이 이해가 되지 않는다면 다시 한 번 읽어보기 바란다.
+
+# 더하기 기능 만들기
 
