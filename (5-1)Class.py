@@ -291,4 +291,39 @@ class FourCal:
 # 위에서 설명한 것들이 이해가 되지 않는다면 다시 한 번 읽어보기 바란다.
 
 # 더하기 기능 만들기
+# 2개의 숫자 값을 설정해 주었으니 2개의 숫자를 더하는 기능을 방금 만든 클래스에 추가해 보자. 다음과 같이 더하기 기능을 갖춘 클래스를 만들어야 한다.
+# a = FourCal()
+# a.setdata(4, 2)
+# print(a.add())
+# 이 연산이 가능하도록 다음과 같이 FourCal 클래스를 만들어 보자.
 
+class FourCal:
+    def setdata(self, first, second):
+        self.first = first
+        self.second = second
+    def add(self):
+        result = self.first + self.second
+        return result
+
+# 새롭게 추가된 것은 add 메서드이다. 이제 클래스를 사용해 보자.
+a = FourCal()
+a.setdata(4, 2)
+# 위와 같이 호출하면 앞에서 살펴보았듯이 a객체의 first, second 객체변수에는 각각 값4와 2가 저장될 것이다.
+# 이제 메서드를 호출해 보자.
+print(a.add())
+# a.add()라고 호출하면 add메서드가 호출되어 값 6이 출력될 것이다.
+# 어떤 과정을 거쳐 값 6이 출력되는지 add메서드를 따로 떼어 내서 자세히 살펴보자.
+def add(self):
+    result = self.first + self.second
+    return result
+# add 메서드의 매개변수는 slelf이고 반환 값은 result이다. 반환 값인 result를 계산하는 부분은 다음과 같다.
+# result = self.first + self.second
+# a.add()와 같이 a 객체에 의해 add 메서드가 수행되면 add 메서드의 self에는 객체 a가 자동으로 입력되므로 위 내용은 다음과 같이 해석한다.
+result = a.first + a.second
+# 위 내용은 a.add() 메서드 호출 전에 a.setdata(4, 2)가 먼저 호출되어 a.first = 4, a.second = 2라고 이미 설정되었기 떄문에 다시 다음과 같이 해석한다.
+result = 4 + 2
+# 따라서 다음과 같이 a.add()를 호출하면 6을 돌려준다.
+print(a.add())
+# 여기까지 모두 이해한 사람이라면 클래스에 대해 80% 이상을 안 것이다.
+
+# 곱하기, 빼기, 나누기 기능 만들기
