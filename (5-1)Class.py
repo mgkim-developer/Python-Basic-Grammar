@@ -327,3 +327,36 @@ print(a.add())
 # 여기까지 모두 이해한 사람이라면 클래스에 대해 80% 이상을 안 것이다.
 
 # 곱하기, 빼기, 나누기 기능 만들기
+# 이번에는 곱하기, 빼기, 나누기 등을 할 수 있게 프로그램을 만들어 보자.
+class FourCal:
+    def setdata(self, first, second):
+        self.first = first
+        self.second = second
+    def add(self):
+        result = self.first + self.second
+        return result
+    def mul(self):
+        result = self.first * self.second
+        return result
+    def sub(self):
+        result = self.first - self.second
+        return result
+    def div(self):
+        result = self.first / self.second
+        return result
+# mul, sub, div 모두 add 메서드에서 배운 것과 동일한 방법이니 따로 설명하지는 않겠다.
+# 정말로 모든 것이 제대로 동작하는지 확인해 보자.
+a = FourCal()
+b = FourCal()
+a.setdata(4, 2)
+b.setdata(3, 8)
+print(a.add())
+print(a.mul())
+print(a.sub())
+print(b.add())
+print(b.mul())
+print(b.sub())
+print(b.div())
+# 여기까지 우리가 목표로 한 사칙연산 기능을 가진 클래스를 만들어 보았다.
+
+# 생성자(Constructor)
