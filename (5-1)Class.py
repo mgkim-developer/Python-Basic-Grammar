@@ -478,3 +478,74 @@ print(a.pow())
 # 상속은 MoreFourCal 클래스처럼 기존 클래스(FourCal)는 그대로 놔둔 채 클래스의 기능을 확장시킬 때 주로 사용한다.
 
 # 메서드 오버라이딩
+# 이번에는 FourlCal클래스를 다음과 같이 실행해 보자.
+# a = FourCal(4, 0)
+# a.div()
+
+# 위 코드를 실행하면
+
+# Traceback (most recent call last):
+#   File "C:/git clone file/Python-Basic-Grammar/(5-1)Class.py", line 483, in <module>
+#     a.div()
+#   File "C:/git clone file/Python-Basic-Grammar/(5-1)Class.py", line 399, in div
+#     result = self.first / self.second
+# ZeroDivisionError: division by zero
+
+# 이런 오류가 발생한다.
+# FourCal 클래스의 객체 a에 4와 0값을 설정하고 div 메서드를 호출하면 4를 0으로 나누려고 하기 때문에 위와 같은 ZeroDivisionError오류가 발생한다.
+# 하지만 0으로 나눌 때 오류가 아닌 0을 돌려주도록 만들고 싶다면 어떻게 해야할까?
+
+# 다음과 같이 FourCal 클래스를 상속하는 SafeFourCal 클래스를 만들어 보자.
+
+class SafeFourCal(FourCal):
+    def div(self):
+        if self.second == 0: #나누는 값이 0인 경우 0을 리턴하도록 수정
+            return 0
+        else:
+            return self.first / self.second
+
+# SafeFourCal 클래스는 FourCal 클래스에 있는 div 메서드를 동일한 이름으로 다시 작헝하였다.
+# 이렇게 부모 클래스(상속한 클래스)에 있는 메서드를 동일한 이름으로 다시 만드는 것을 메서드 오버라이딩(Overriding, 덮어쓰기)이라고 한다.
+# 이렇게 메서드를 오버라이딩하면 부모클래스의 메서드 대신 오버라이딩한 메서드가 호출된다.
+
+# SafeFourCal 클래스에 오버라이딩한 div 메서드는 나누는 값이 0인 경우에는  0을 돌려주도록 수정했다.
+# 이제 다시 위에서 수행한 예제를 FourCal클래스 대신 SafeFourCal 클래스를 사용하여 수행해 보자.
+a = SafeFourCal(4, 0)
+print(a.div())
+# FourCal 클래스와는 달리 ZeroDivisionError가 발생하지 않고 의도한 대로 0을 돌려주는 것을 확인할 수 있다.
+
+# 클래스 변수
+# 객체변수는 다른 객체들에 영향받지 않고 독립적으로 그 값을 유지한다는 점을 이미 알아보았다.
+# 이번에는 객체변수와는 성격이 다른 클래스 변수에 대해 알아보자.
+
+# 다음 클래스를 작성해 보자.
+class Family:
+    lastname = "김"
+# Family 클래스에 선언한 lastname이 바로 클래스 변수이다.
+# 클래스 변수는 클래스 안에 함수를 선언하는 것과 마찬가지로 클래스 안에 변수를 선언하여 생성한다.
+
+# 이제 Family 클래스를 다음과 같이 사용해 보자.
+print(Family.lastname)
+# 클래스 변수는 위 예와 같이 클래스이름.클래스 변수 로 사용할 수 있다.
+a = Family()
+b = Family()
+print(a.lastname)
+print(b.lastname)
+# 만약 Family클래스의 lastname을 다음과 같이 "박"이라는 문자열로 바꾸면 어떻게 될까?
+Family.lastname = "박"
+# 다음과 같이 확인해 보자.
+print(a.lastname)
+print(b.lastname)
+# 클래스 변수 값을 변경했더니 클래스로 만든 객체의 lastname 값도 모두 변경된다는 것을 확인할 수 있다.
+# 즉 클래스 변수는 클래스로 만든 모든 객체에 공유된다는 특징이 있다.
+
+# id함수를 사용하면 클래스 변수가 공유된다는 사실을 증명할 수 있다.
+print(id(Family.lastname))
+print(id(a.lastname))
+print(id(b.lastname))
+# id 값이 모두 같으므로 Family.lastname, a.lastname, b.lastname은 모두 같은 메모리를 가리키고 있다.
+
+# 클래스 변수를 가장 늦게 설명하는 이유는 클래스에서 클래스 변수보다는 객체변수가 훨씬 중요하기 때문이다.
+# 실무 프로그래밍을 할 때도 클래스 변수보다는 객체변수를 사용하는 비율이 훨씬 높다
+
+# Review conmplete
