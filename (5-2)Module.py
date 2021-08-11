@@ -146,3 +146,38 @@ if __name__ == "__main__":
 # 'mod1'
 
 # 클래스나 변수 등을 포함한 모듈
+# 지금까지 살펴본 모듈은 함수만 포함했지만 클래스나 변수 등을 포함할 수도 있다.  다음 프로그램을 작성해 보자.
+#mod2.py
+PI = 3.141592
+
+class Math:
+    def solv(self, r):
+        return PI * (r ** 2)
+
+def add(a, b):
+    return a + b
+# 이 파일은 원의 넓이를 계산하는 Math 클래스와 두 값을 더하는 add 함수 그리고 원주율 값에 해당되는 PI 변수처럼 클래스, 팜수, 변수 등을 모두 포함하고 있다.
+
+# 파일 이름을 mod2.py로 하고 C:\doit 디렉토리에 저장하자. 대화형 인터프리터를 열고 다음과 같이 따라 해 보자.
+# C:\Users\pahkey> cd C:\doit
+# C:\doit> python
+# Type "help", "copyright", "credits" or "license" for more information.
+# >>> import mod2
+# >>> print(mod2.PI)
+# 3.141592
+
+# 위 예에서 볼 수 있듯이 mod2.PI처럼 입력해서 mod2.py 파일에 있는 PI변수 값을 사용할 수 있다.
+
+# >>> a = mod2.Math()
+# >>> print(a.solv(2))
+# 12.566368
+
+# 위 예는 mod2.py에 있는 Math 클래스에 사용하는 방법을 보여준다.
+# 위 예처럼 모듈 안에 있는 클래스를 사용 하려면 "."(도트 연산자)로 클래스 이름 앞에 모듈 이름을 먼저 입력해야 한다.
+
+# >>> print(mod2.add(mod2.PI, 4.4))
+# 7.541592
+
+# mod2.py에 있는 add 함수 역시 당연히 사용할 수 있다.
+
+# 다른 파일에서 모듈 불러오기
