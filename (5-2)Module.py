@@ -181,3 +181,136 @@ def add(a, b):
 # mod2.py에 있는 add 함수 역시 당연히 사용할 수 있다.
 
 # 다른 파일에서 모듈 불러오기
+# 지금까지는 만들어 놓은 파일을 사용하기 위해 대화형 인터프리터만 사용했다.
+# 이번에는 다른 파이썬 파일에서 이전에 만들어 놓은 모듈을 불러와서 사용하는 방법에 대해 알아보자.
+# 여기에는 조금 전에 만든 모듈인 mod2.py파일을 다른 파이썬 파일에서 불러와 사용할 것이다.
+
+# 먼저 에디터로 C:\doit\modtest.py 파일을 다음과 같이 작성한다.
+# modtest.py
+
+# import mod2
+# result = mod2.add(3,4)
+# print(result)
+
+# 위에서 볼 수 있듯이 다른 파이썬에서도 import mod2로 mod2 모듈을 불러와서 사용할 수 있다.
+# 대화형 인터프리터에서 한 것과 마찬가지 방법이다. 위 예제가 정상적으로 실행되기 위해서는 modtesst.py 파일과 mod2.py파일이 동일한 디렉토리에 있어야 한다.
+
+# [모듈을 불러오는 또 다른 방법]
+# 우리는 지금껏 명령 프롬포트 창을 열고 모듈이 있는 데릭토리로 이동한 다음에 모듈을 사용할 수 있었다.
+# 이번에는 모듈을 저장한 디렉토리로 이동하지 않고 모듈을 불러와서 사용하는 방법에 대해 알아보자.
+
+# 먼저 다음과 같이 이전에 만든 mod2.py파일을 C:\doit\mymod로 이동시킨다.
+
+# C:\Users\pahkey>cd C:\doit
+# C:\doit>mkdir mymod
+# C:\doit>move mod2.py mymod
+#         1개 파일을 이동했습니다.
+
+# 그리고 다음 예를 따라 해 보자.
+
+# 1. syss.path.append(모듈을 저장한 디렉토리)사용하기
+# 먼저 sys모듈을 불러온다.
+
+# C:\doit>python
+# >>> import sys
+
+# sys모듈은 파이썬을 설치할 때 함께 설치되는 라이브러리 모듈이다.
+# sys에 대해서는 뒤에서 자세하게 다룰 것이다.
+# 이 sys모듈을 사용하면 파이썬 라이브러리가 설치되어 있는 디렉토리를 확인할 수 있다.
+
+# 다음과 같이 입력해 보자.
+
+# >>> sys.path
+# ['', 'C:\\Windows\\SYSTEM32\\python37.zip', 'c:\\Python37\\DLLs',
+# 'c:\\Python37\\lib', 'c:\\Python37', 'c:\\Python37\\lib\\site-packages']
+
+# sys.path는 파이썬 라이브러리가 설치되어 있는 디렉토리를 보여준다.
+# 만약 파이썬 모듈이 위 디렉토리에 들어 있다면 모듈이 저장된 디렉토리로 이동할 필요 없이 바로 불러서 사용할 수 있다.
+# 그렇다면 sys.path에 C:\doit\mymod 디렉터리를 추가하면 아무 곳에서나 불러 사용할 수 있지 않을까?
+
+# ※ 명령 프롬포트 창에서 /, \든 상관없지만, 소스 코드 안에서는 반드시 / 또는 \\기호를 사용해야 한다.
+
+# 당연하다. sys.path의 결과값이 리스트이므로 우리는 다음과 같이 할 수 있다.
+
+# >>> sys.path.append("C:/doit/mymod")
+# >>> sys.path
+# ['', 'C:\\Windows\\SYSTEM32\\python37.zip', 'c:\\Python37\\DLLs',
+# 'c:\\Python37\\lib', 'c:\\Python37', 'c:\\Python37\\lib\\site-packages',
+# 'C:/doit/mymod']
+# >>>
+
+# sys.path.append를 사용해서 C:/doit/mymod라는 디렉터리를 sys.path에 추가한 후 다시 sys.path를 보면 가장 마지막 요소에 C:/doit/mymod라고 추가된 것을 확인할 수 있다.
+# 자, 실제로 모듈을 불러와서 사용할 수 있는지 확인해 보자.
+
+# >>> import mod2
+# >>> print(mod2.add(3,4))
+# 7
+
+# 이상 없이 불러와서 사용할 수 있다
+
+# 2.PYTHONPATH 환경 변수 사용하기
+
+# 모듈을 불러와서 사용하는 또 다른 방법으로는 PYTHONPATH 환경변수를 사용하는 방법이 있다.
+# 다음과 같이 따라 해 보자.
+
+# C:\doit>set PYTHONPATH=C:\doit\mymod
+# C:\doit>python
+# >>> import mod2
+# >>> print(mod2.add(3,4))
+# 7
+
+# set 명령어를 사용해 PYTHONPATH 환경 변수에 mod2.py 파일이 있는 C:\doit\mymod 디렉터리를 설정한다.
+# 그러면 디렉터리 이동이나 별도의 모듈 추가 작업 없이 mod2 모듈을 불러와서 사용할 수 있다.
+
+# Review complete.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
