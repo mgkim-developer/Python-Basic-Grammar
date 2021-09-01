@@ -112,9 +112,49 @@ print(list(filter(positive, [1, -3, 2, 0, -5, 6])))
 print(list(filter(lambda x: x > 0, [1, -3, 2, 0, -5, 6])))
 
 # hex
+# hex(x)는 정수 값을 입력받아 16진수(hexadecimal)로 변환하여 돌려주는 함수이다.
+print(hex(234))
+print(hex(3))
 
+# id
+# id(object)는 객체를 입력받아 객체의 고유 주소 값(레퍼런스)을 돌려주는 함수이다.
+a = 3
+print(id(3))
+print(id(a))
+b = a
+print(id(b))
+# 위 예의 3, a, b는 고유 주소 값이 모두 140711953049552이다. 즉, 3, a, b가 모두 같은 객체를 가리키고 있다.
+# 만약 id(4)라고 입력하면 4는 3, a, b 와 다른 객체이므로 당연히 다른 고유 주소 값이 출력된다.
+print(id(4))
 
+# input
+# input([prompt])은 사용자 입력은 받는 함수이다. 매개변수로 문자열을 주면 다음 세 번째 예에서 볼 수 있듯이 그 문자열은 프롬프트가 된다.
+# ※ []기호는 괄호 안의 내용을 생략할 수 있다는 관례 표기법임을 기억하자.
+a = input()
+print(a)
+b = input("Enter: ")
+print(b)
 
+# int
+# int(x)는 문자열 형태의 숫자나 소수점이 있는 숫자 등을 정수 형태로 돌려주는 함수로, 정수를 입력으로 받으면 그대로 돌려준다.
+print(int('3'))
+print(int(3.4))
+# int(x, radix)는 radix 진수로 표현된 문자열 x를 10진수로 변환하여 돌려준다.
+# 2진수로 표현된 11의 10진수 값은 다음과 같이 구한다.
+print(int('11', 2)) # 2진수 11은 10진수 3이다.
+print(int('1011000', 2)) #2진수1011000은 10진수 88이다.
+# 16진수로 표현된 1A의 10진수 값은 다음과 같이 구한다.
+print(int('1A', 16)) #16진수 1A는 10진수 26이다.
 
+# isinstance
+# isinstance(object, class)는 첫 번째 인수로 인스턴스, 두 번쨰 인수로 클래스 이름을 받는다.
+# 입력으로 받은 인스턴스가 그 클래스의 인스턴스 인지를 판단하여 참이면 True, 거짓이면 False를 돌려준다.
+class Person: pass
+a = Person()
+print(isinstance(a, Person))
+# 위 예는 a가 Person 클래스가 만든 인스턴스임을 확인시켜 준다.
+b = 3
+print(isinstance(b, Person))
+# b는 Person클래스가 만든 인스턴스가 아니므로 False를 돌려준다.
 
-
+# len
