@@ -158,3 +158,13 @@ print(isinstance(b, Person))
 # b는 Person클래스가 만든 인스턴스가 아니므로 False를 돌려준다.
 
 # len
+# len(s)은 입력값 s의 길이 (요소의 전체 개수)를 돌려주는 함수이다.
+
+print(len('python'))
+print(len([1, 2, 3]))
+print(len((1, 'a')))
+
+# list
+# list(s)는 반복가능한 자료형 s를 입력받아 리스트로 만들어 돌려주는 함수이다.
+print(list("python"))
+print((1, 2, 3))
