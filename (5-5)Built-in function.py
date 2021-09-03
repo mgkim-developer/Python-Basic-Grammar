@@ -130,7 +130,7 @@ print(id(4))
 # input
 # input([prompt])은 사용자 입력은 받는 함수이다. 매개변수로 문자열을 주면 다음 세 번째 예에서 볼 수 있듯이 그 문자열은 프롬프트가 된다.
 # ※ []기호는 괄호 안의 내용을 생략할 수 있다는 관례 표기법임을 기억하자.
-a = input()
+a = input("Enter:")
 print(a)
 b = input("Enter: ")
 print(b)
@@ -168,3 +168,107 @@ print(len((1, 'a')))
 # list(s)는 반복가능한 자료형 s를 입력받아 리스트로 만들어 돌려주는 함수이다.
 print(list("python"))
 print((1, 2, 3))
+
+# map
+# map(f, iterable)은 함수(f)와 반복 가능한 (iterable) 자료형을 입력으로 받는다.
+# map은 입력받은 자료형의 각 요소를 함수 f가 수행한 결과를 묶어서 돌려주는 함수이다.
+# 다음예를 보자.
+def two_times(numberList):
+    result = [ ]
+    for number in numberList:
+        result.append(number*2)
+    return result
+
+result = two_times([1, 2, 3, 4])
+print(result)
+
+# two_times 함수는 리스트 요소를 입력받아 각 요소에 2를 곱한 결과값을 돌려준다. 실행 결과는 다음과 같다.
+# [2, 4, 6, 8]
+
+# 위 예제는 map 함수를 사용하면 다음처럼 바꿀 수 있다.
+def two_times(x):
+    return x*2
+
+print(list(map(two_times, [1, 2, 3, 4])))
+# 먼저 리스트인 첫 번째 요소인 1이 two_times 함수의 입력값으로 들어가고 1*2의 과정을 거쳐서 2가 된다.
+# 다음으로 리스트의 두 번째 오소인 2가 2*2의 과정을 거쳐 4가 된다. 따라서 결괏값 리스트는 이제 [2, 4]가 된다.
+# 총 4개의 요솟값이 모두 수행되면 마지막으로 [2, 4, 6, 8]을 돌려준다.
+# 이것이 map 함수가 하는 일이다.
+
+# 위 예는 lambda를 사용하면 다음처럼 간략하게 만들 수 있다.
+print(list(map(lambda a: a*2, [1, 2, 3, 4])))
+
+
+# max
+# max(iterable)는 인수로 반복 가능한 자료형을 입력받아 그 최대값을 돌려주는 함수이다.
+print(max([1, 2, 3]))
+print(max("python"))
+
+
+# min
+# min(iterable)은 max 함수와 반대로, 인수로 반복 가능한 자료형을 입력받아 그 최솟값을 돌려준는 함수이다.
+print(min([1, 2, 3]))
+print(min("python"))
+
+
+# oct
+# oct(x)는 정수 형태의 숫자를 8진수 문자열로 바꾸어 둘려주는 함수이다.
+print(oct(34))
+print(oct(12345))
+
+# -----------------------------------------------------------
+# open
+# open(filename, [model])은 "파일 이름"과 "읽기 방법"을 입력받아 파일 객체를 돌려주는 함수이다.
+# 읽기 방법(mode)을 생략하면 기본값인 읽기 전용 모드(r)로 파일 객체를 만들어 돌려준다.
+
+# mode	설명
+# w	쓰기 모드로 파일 열기
+# r	읽기 모드로 파일 열기
+# a	추가 모드로 파일 열기
+# b	바이너리 모드로 파일 열기
+
+# # b는 w, r, a와 함꼐 사용한다.
+# f = open("binary_file", "rb")
+# # 위 예의 rb는 "바이너리 읽기 모드"를 의미한다.
+#
+# # 다음 예의 fread와 fread2는 동일한 방법이다
+# fread = open("read_mode.txt", 'r')
+# fread2 = open("read_mode.txt")
+# # 즉 모드 부분을 생략하면 기본값으로 읽기 모드 r를 갖게 된다.
+# # 다음은 추가 모드(a)로 파일을 여는 예이다.
+# fappend = open("append_mode.txt", 'a')
+# -----------------------------------------------------------
+
+# ord
+# ord(c)는 문자의 유니코드 값을 돌려주는 함수이다.
+# ※ ord 함수는 chr 함수와 반대이다.
+print(ord('a'))
+print(ord('가'))
+
+
+# pow
+# pow(x ,y)는 x의 y 제곱한 결과값을 돌려주는 함수이다.
+print(pow(2, 4))
+print(pow(3, 3))
+
+
+# range
+# range([start], stop, [step])는 for 문과 함꼐 자주 사용하는 함수이다.
+# 이 함수는 입력받은 숫자에 해당하는 범위 값을 반복 가능한 객체로 만들어 돌려준다.
+
+# 인수가 하나일 경우
+# 시작 숫자를 지정해 주지 않으면 range 함수는 0부터 시작한다.
+print(list(range(5)))
+
+# 인수가 2개일 경우
+# 입력으로 주어지는 2개의 인수는 시작 숫자와 끝 숫자를 나타낸다. 단 끝 숫자는 해당 범위에 포함되지 않는다는 것에 주의하자.
+print(list(range(5, 10)))
+
+# 인수가 3개일 경우
+# 세 번쨰 인수는 숫자 사이의 거리를 말한다.
+print(list(range(1, 10, 2)))
+print(list(range(0, -10, -1)))
+
+
+# round
+
