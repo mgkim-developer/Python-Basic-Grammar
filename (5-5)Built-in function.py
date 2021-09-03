@@ -271,4 +271,58 @@ print(list(range(0, -10, -1)))
 
 
 # round
+# round(number[, ndigits]) 함수는 숫자를 입력받아 반올림해 주는 함수이다.
+# ※ [, ndigits]는 ndigits가 있을 수도 있고 없을 수도 있다는 의미이다.
+print(round(4.6))
+print(round(4.2))
+# 다음과 같이 실수 5.678을 소수점 2자리까지만 반올림하여 표시할 수 있다.
+print(round(5.678, 2))
+# round 함수으 ㅣ두 번째 매개변수는 반올림하여 표시하고 싶은 소수점의 자릿수(ndigits)이다.
 
+
+# sorted
+# sorted(iterable) 함수는 입력값을 정렬한 수 그 결과를  리스트로 돌려주는 함수이다.
+print(sorted([3, 1, 2]))
+print(sorted(['a', 'c', 'b']))
+print(sorted("zero"))
+print(sorted((3, 2, 1)))
+# 리스트 자료형에도 sort 함수가 있다.
+# 하지만 리스트 자료형인 sort 함수는 리스트 객체 그 자체를 정렬만 할 뿐 정렬된 결과를 돌려주지는 않는다.
+
+# str
+# str(object)은 문자열 형태로 객체를 변환하여 돌려주는 함수이다.
+print(str(3))
+print(str('hi'))
+print(str('hi'.upper()))
+
+
+# sum
+# sum(iterable)은 입력받은 리스트나 튜플의 모든 요소의 합을 돌려주는 함수이다.
+print(sum([1, 2, 3]))
+print(sum((4, 5, 6)))
+
+
+# tuple
+# tuple(iterable)은 반복가능한 자료형을 입력받아 튜플 형태로 바꾸어 돌려주는 함수이다.
+# 만약 튜플이 입력으로 들어오면 그대로 돌려준다.
+print(tuple("abc"))
+print(tuple([1, 2, 3]))
+print(tuple((1, 2, 3)))
+
+
+# type
+# type(object)은 입력값의 자료형이 무엇인지 알려 주는 함수이다.
+print(type("abc"))
+print(type([ ]))
+print(open("test", 'w'))
+
+
+# zip
+# zip(*iterable)은 동일한 개수로 이루어진 자료형을 묶어 주는 역할을 하는 함수이다.
+# ※ 여기서 사용한 *iterable은 반곡 가능(iterable)한 자료형 여러 개를 입력할 수 있다는 의미이다.
+# 다음 예제를 살펴 보자.
+print(list(zip([1, 2, 3], [4, 5, 6])))
+print(list(zip([1, 2, 3], [4, 5, 6], [7, 8, 9])))
+print(list(zip("abc", 'def')))
+
+# Review complete.
