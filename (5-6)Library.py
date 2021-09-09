@@ -123,3 +123,106 @@
 
 
 # shutil
+# shutil은 파일을 복사해 주는 파이썬 모듈이다.
+
+# 다음 예시는 src라는 이름의 파일을 dst로 복사한다.
+# 만약 dst가 디렉토리 이름이라면 src라는 파일 이름으로 dst디렉토리에 복사하고 동일한 파일 이름이 있을 경우에는 덮어쓴다.
+
+# import shutil
+# shutil.copy("src.txt", "dst.txt")
+
+# 위 예를 실행해 보면 src.txt 파일과 동일한 내용의 파일이 dst.txt로 복사되는 것을 확인할 수 있다.
+
+
+# glob
+# 가끔 파일을 읽고 쓰는 기능이 있는 프로그램을 만들다 보면 특정 디렉토리에 있는 파일 이름 모두를 알아야 할 때가 있다.
+# 이럴 때 사용하는 모듈이 바로 glob이다.
+
+# 디렉토리에 있는 파일들을 리스트로 만들기 - glob(pathname)
+
+# glob 모듈은 디렉터리 안의 파일들을 읽어서 돌려준다.
+# *, ? 등 메타 문자를 써서 우너하는 파일만 읽어 들일 수도 있다.
+
+# 다음은 C:/doit 디렉토리에 있는 파일 중 이름이 mark로 시작하는 파일을 모두 찾아서 읽어 들이는 예이다.
+
+# >>> import glob
+# >>> glob.glob("c:/doit/mark*")
+# ['c:/doit\\marks1.py', 'c:/doit\\marks2.py', 'c:/doit\\marks3.py']
+# >>>
+
+
+# time
+# 시간과 관련된 time 모듈에는 함수가 굉장히 많다. 그중 가장 유용한 몇 가지만 알아보자.
+
+# time.time
+# time.time()은 UTC(Universal Time Coordinated 협정 세계 표준시)를 사용하여 현재 시간을 실수 형태로 돌려주는 함수이다.
+# 1970년 1월 1일 0시 0분 0초를 기준으로 지난 시간을 초 단위로 돌려준다.
+import time
+time.time()
+print(time.time())
+
+# time.localtime
+# time.localtime은 time.time() 이 돌려준 실수 값을 사용해서 연도, 월, 일, 시, 분, 초,..의 형태로 바꾸어 주는 함수이다.
+print(time.localtime(time.time()))
+
+# time.asctime
+# 위 time.localtime에 의해서 반환된 튜플 형태의 값을 인수로 받아서 날짜와 시간을 알아보기 쉬운 형태로 돌려주는 함수이다.
+print(time.asctime(time.localtime(time.time())))
+
+# time.ctime
+# time.asctime(time.localtime(time.time()))은 time.ctime()을 사용해 간편하게 표시할 수 있다.
+# asctime과 다른 점은 ctime은 항상 현재 시간만을 돌려준다는 점이다.
+print(time.ctime())
+
+# time.strftime
+print(time.strftime('출력할 형식 포맷 코드', time.localtime(time.time())))
+
+# strftime 함수는 시간에 관계된 것을 세밀하게 표현하는 여러 가지 포맷 코드를 제공한다.
+
+# 시간에 관계된 것을 표현하는 포맷 코드
+
+# 시간에 관계된 것을 표현하는 포맷 코드
+#
+# 포맷코드	설명	예
+# %a	요일 줄임말	Mon
+# %A	요일	Monday
+# %b	달 줄임말	Jan
+# %B	달	January
+# %c	날짜와 시간을 출력함	06/01/01 17:22:21
+# %d	날(day)	[01,31]
+# %H	시간(hour)-24시간 출력 형태	[00,23]
+# %I	시간(hour)-12시간 출력 형태	[01,12]
+# %j	1년 중 누적 날짜	[001,366]
+# %m	달	[01,12]
+# %M	분	[01,59]
+# %p	AM or PM	AM
+# %S	초	[00,59]
+# %U	1년 중 누적 주-일요일을 시작으로	[00,53]
+# %w	숫자로 된 요일	[0(일요일),6]
+# %W	1년 중 누적 주-월요일을 시작으로	[00,53]
+# %x	현재 설정된 로케일에 기반한 날짜 출력	06/01/01
+# %X	현재 설정된 로케일에 기반한 시간 출력	17:22:21
+# %Y	년도 출력	2001
+# %Z	시간대 출력	대한민국 표준시
+# %%	문자	%
+# %y	세기부분을 제외한 년도 출력	01
+
+# 다음은 time.strftime을 사용하는 예이다.
+import time
+print(time.strftime('%x', time.localtime(time.time())))
+print(time.strftime('%c', time.localtime(time.time())))
+
+# time.sleep
+# time.sleep 함수는 주로 루프 안에서 많이 사용한다. 이 함수를 사용하면 일정한 시간 간격을 두고 로프를 실행할 수 있다.
+# 다음 예를 보자.
+
+import time
+for i in range(10):
+    print(i)
+    time.sleep(1)
+
+# 위 예는 1초 간격으로 0부터 9까지의 숫자를 출력한다.
+# 위 예에서 볼 수 있듯이 time.sleep 함수의 인수는 실수 형태를 쓸 수 있다.
+# 즉 1이면 1초, 0.5면 0.5초가 되는 것이다.
+
+# calendar
