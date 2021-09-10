@@ -226,3 +226,71 @@ for i in range(10):
 # 즉 1이면 1초, 0.5면 0.5초가 되는 것이다.
 
 # calendar
+# calendar는 파이썬에서 달력을 볼 수 있게 해주는 모듈이다.
+# calendar.calendar(연도)로 사용하면 그해의 전체 달력을 볼 수 있다.
+# 결과값은 달력이 너무 길어 생략하겠다.
+import calendar
+print(calendar.calendar(2015))
+
+# calendar.prcal(연도)를 사용해도 위와 똑같은 결과값을 얻을 수 있다.
+calendar.prcal(2015)
+
+# 다음 예는 2015년 12월의 달력만 보여 준다.
+print(calendar.prmonth(2015, 12))
+
+# calendar.weekday
+# calendar 모듈의 또 다른 유용한 함수를 보자.
+# weekday(연도, 월, 일) 함수는 그 날짜에 해당하는 요일 정보를 돌려준다.
+# 월요일은 0, 화요일은 1, 수요일은 2, 목요일은 3, 금요일은 4, 토요일은 5, 일요일은 6이라는 값을 돌려준다.
+print(calendar.weekday(2015, 12, 31))
+# 위의 예에서 2015년 12월 31일은 목요일임을 보여준다.
+
+# calendar.monthrange
+# monthrange(연도, 월) 함수는 입력받은 달의 1일이 무슨 요일인지와 그 달이 며칠까지 있는지를 튜플 형태로 돌려준다.
+print(calendar.monthrange(2015, 12))
+# 위 예는 2015년 12월 1일은 화요일이고, 이 달은 31일까지 있다는 것을 보여 준다.
+# 날짜와 관련된 프로그래밍을 할 떄 위 2가지 함수는 매우 유용하게 사용된다.
+
+
+# random
+# random은 난수(규칙이 없는 임의의 수)를 발생시키는 모듈이다. random과 randint에 대해 알아보자.
+# 다음은 0.0에서 1.0 사이의 실수 중에서 난수 값을 돌려주는 예를 보여 준다.
+import random
+print(random.random())
+
+# 다음 예는 1에서 10사이의 정수 중에서 난수 값을 돌려준다.
+print(random.randint(1, 10))
+
+# 다음 예는 1에서 55사이의 정수 중에서 난수 값을 돌려준다.
+print(random.randint(1, 55))
+
+# random 모듈을 사용해서 재미있는 함수를 하나 만들어 보자.
+# random_pop.py
+import random
+def random_pop(data):
+    number = random.randint(0, len(data)-1)
+    return data.pop(number)
+
+if __name__ =="__main__":
+    data = [1, 2, 3, 4, 5]
+    while data:
+        print(random_pop(data))
+# 위 random_pop 함수는 리스트의 요소 중에서 무작위로 하나를 선택하여 꺼낸 다음 그 값을 돌려준다.
+# 물론 꺼낸 요소는 pop 메서드에 의해 사라진다.
+
+# random_pop 함수는 random 모듈의 choice 함수를 사용하여 다음과 같이 좀 더 직관적으로 만들 수도 있다.
+def random_pop(data):
+    number = random.choice(data)
+    data.remove(number)
+    return number
+# random.choice 함수는 입력을 받은 리스트에서 무작위로 하나를 선택하여 돌려준다.
+
+# 리스트 항목을 무작위로 섞고 싶을 때는 random.shuffle 함수를 사용하면 된다.
+import random
+data = [1, 2, 3, 4, 5]
+random.shuffle(data)
+print(data)
+# [1, 2, 3, 4, 5] 리스트가 shuffle 함수에 의해 섞여서 print된 것을 볼 수 있다.
+
+
+# webbrowser
