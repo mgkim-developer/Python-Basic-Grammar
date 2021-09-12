@@ -294,3 +294,105 @@ print(data)
 
 
 # webbrowser
+# webbrowser는 자신의 시스템에서 사용하는 기본 웹 브라우저를 자동으로 실행하는 모듈이다.
+# 다음 예제는 웹 브라우저를 자동으로 실행하고 해당 URL인 https://mgyo.tistory.com/로 가게 해준다.
+
+import webbrowser
+webbrowser.open("https://mgyo.tistory.com/")
+
+# webbrowser의 open 함수는 웹 브라우저가 이미 실행된 상태라면 입력 주소로 이동한다.
+# 만약 웹 브라우저가 실행되지 않은 상태라면 새로 웹 브라우저를 실행한 후 해당 주소로 이동한다.
+
+# open_new 함수는 이미 웹 브라우저가 실행된 상태이더라도 새로운 창으로 해당 주소가 열리게 한다.
+webbrowser.open_new("https://mgyo.tistory.com/")
+
+# [스레드를 다루는 threading 모듈]
+# 스레드 프로그래밍은 초보 프로그래머가 구현하기에는 매우 어려운 기술이다.
+# 잠시 소개하도록 하겠다.
+
+# 컴퓨터에서 동작하고 있는 프로그램을 프로세스(Process)라고 한다.
+# 보통 1개의 프로세스는 한 가지 일만 하지만 스레드(Thread)를 사용하면 한 프로세스 안에서 2가지 또는 그 이상의 일을 동시에 수행할 수 있다.
+
+# 간단한 예제로 설명을 대신하겠다.
+
+# thread_test.py
+import time
+
+def long_task(): # 5초의 시간이 걸리는 함수
+    for i in range(5):
+        time.sleep(1)
+        print("working:%s\n" % i)
+
+print("Strat")
+
+for i in range(5):
+    long_task()
+
+print("End")
+
+# long_task 함수는 수행하는 데 5초의 시간이 걸리는 함수이다.
+# 위 프로그램은 이 함수를 총 5번 반복해서 수행하는 프로그램이다.
+# 이 프로그램은 5초가 5번 반복되니 총 25초의 시간이 걸린다.
+
+# 하지만 앞에서 설명했듯이 스레드를 사용하면 5초의 시간이 걸리는 long_task 함수를 동시에 실행할 수 있으니 시간을 줄일 수 있다.
+
+# 다음과 같이 프로그램을 수정해 보자.
+
+#thread_test.py
+import time
+import threading # 스레드를 생성하기 위해서는 threading 모듈이 필요다하.
+
+def long_task():
+    for i in range(5):
+        time.sleep(1)
+        print("working:%s\n" % i)
+
+print("Start")
+
+threads = []
+for i in range(5):
+    t = threading.Thread(target=long_task) # 스레드를 생성한다.
+    threads.append(t)
+
+for t in threads:
+    t.start()
+
+print("End")
+
+# 이와 같이 프로그램을 수정하고 실행해 보면 25초 걸리던 작업이 5초 정도에 수행되는 것을 확인할 수 있다.
+# threading.Tread를 사용하여 만든 스레드 객체가 동시 작업을 가능하게 해 주기 떄문이다.
+
+# 하지만 위 프로그램을 실행해 보면 "Start"와 "End"가 먼저 풀력되고 그 이후에 스레드의 결과가 출력되는 것을 확인할 수 있다.
+# 그리고 프로그램이 정상 종료되지 않는다.
+# 우리가 기대하는 것은 "Start"가 출력되고 그다음 스레드의 결과가 출력된 후 마지막으로 "End"가 출력되는 것이다.
+
+# 이 문제를 해결하기 위해서는 다음과 같이 프로그램을 수정해야 한다.
+
+#thread_test.py
+import time
+import threading
+
+def long_task():
+    for i in range(5):
+        time.sleep(1)
+        print("working:%s\n" % 1)
+
+print("Start")
+
+threads = []
+for i in range(5):
+    t = threading.Thread(target=long_task)
+    threads.append(t)
+
+for t in threads:
+    t.start()
+
+for t in threads:
+    t.join()
+
+print("End")
+
+# 스레드의 join 함수는 해당 스레드가 종료될 때까지 기다리게 한다.
+# 따라서 위와 같이 수정하면 우리가 원하던 출력을 보게 된다.
+
+# Review complete.
