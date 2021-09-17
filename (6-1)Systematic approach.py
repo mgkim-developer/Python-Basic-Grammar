@@ -37,14 +37,64 @@
 
 # 3. 어떻게 만들지 생각해 봤으니 1번에서 입력한 문장은 주석처리 하고, 진짜 프로그램을 짜 보자.
 # 일단 이름을 GuGuDan으로 지은 함수를 다음과 같이 만든다.
-def GuGuDan(n):
-    print(n)
-
-GuGuDan(2)
+# def GuGuDan(n):
+#     print(n)
+#
+# GuGuDan(2)
 # 위와 같은 함수를 만들고 GuGuDan(2)처럼 실행하면 2를 출력하게 된다.
 # 즉 입력값으로 2가 잘 들어오는지 확인하는 것이다.
 
 # 4. 이제 결과값을 담을 리스트를 하나 생성하자. 앞에서 작성한 print(n)은 입력이 잘 되는지 확인하기 위한 것이었으므로 지워도 좋다.
-def GuGu(n):
-    print(n)
-# 5. 다음으로
+def GuGuDan(n):
+    result = [ ]
+
+# 5. 다음으로 result에 2, 4, 6...18을 어떻게 넣어야 할지 생각해 보자. 나는 다음과 같이 리스트에 요소를 추가하는 append 내장 함수를 사용하기로 결정했다.
+def GuGuDan(n):
+    result = []
+    result.append(n*1)
+    result.append(n*2)
+    result.append(n*3)
+    result.append(n*4)
+    result.append(n*5)
+    result.append(n*6)
+    result.append(n*7)
+    result.append(n*8)
+    result.append(n*9)
+    return result
+
+print(GuGuDan(2))
+
+# 정말 무식한 방법이지만 입력값 2를 주었을 떄 원하는 결과값을 얻을 수 있었다.
+
+
+# 6. 그런데 위 함수는 반복이 너무 많다. 가만히 보면 result.append(n*□)의 □위치에 1부터 9까지 숫자만 다르게 들어가 있다는 것을 알 수 있다.
+# 똑같은 일을 반복할 떄는 "반복문"을 사용한다고 했다.
+# 그렇다면 1부터 9까지 출력해 주는 반복문을 만들면 되지 않을까?
+
+# 대화형 인터프리터를 열고 다음과 같이 테스트해 보았다.
+i = 1
+while i < 10:
+    print(i)
+    i = i + 1
+
+# 아주 만족스러운 결과다. 위 소스코드를 GuGuDan 함수에 적용해 보자.
+
+# 7. 이상의 생각을 바탕으로  완성한 GuGuDan함수는 다음과 같다.
+def GuGuDan(n):
+    result = []
+    i = 1
+    while i < 10:
+        result.append(n*i)
+        i = i + 1
+    return result
+
+print(GuGuDan(2))
+
+# 결과는 대만족이다.
+
+# 사실 GuGuDan함수는 위와 같은 과정을 거치지 않고도 바로 만들수 있는 사람들이 대부분 일 것이다.
+# 하지만 더 복잡한 함수를 만들 떄는 위와 같이 구체적이고 단계적으로 접근하는 방식이 매우 도움이 된다.
+# 프로그래밍을 할 땐 매우 구체적으로 접근해야 머리가 덜 아프다는 것을 기억하자.
+# 이제 다양한 예제를 접해 보며 여러분 나름대로 멋진 생각을 해보기 바란다.
+
+# Review complete.
