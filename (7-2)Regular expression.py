@@ -265,3 +265,74 @@ print(m)
 
 
 # findall
+# 이번에는 findall 메서드를 수행해 보자.
+
+result = p.findall("life is too short")
+print(result)
+
+# "life is too short" 문자열의 'life', 'is', 'too', 'short' 단어를 각각 [a-z]+ 정규식과 매치해서 리스트로 돌려준다.
+
+# finditer
+# 이번에는 finditer 메서드를 수행해 보자.
+result = p.finditer("life is too short")
+print(result)
+
+for r in result: print(r)
+
+# finditer는 findall과 동일하지만 그 결과로 반복 가능한 객체(iterator object)를 돌려준다.
+# 반복 가능한 객체가 포함하는 각각의 요소는 match 객체이다.
+
+
+# match 객체의 메서드
+# 자, 이제 match 메서드와 search 메서드를 수행한 결과로 돌려준 match 객체에 대해 알아보자.
+# 앞에서 정규식을 사용한 문자열 검색을 수행하면서 아마도 다음과 같은 궁금증이 생겼을 것이다.
+
+# - 어떤 문자열이 매치되었는가?
+# - 매치된 문자열의 인덱스는 어디서부터 어디까지인가?
+
+# match 객체의 메서드를 사용하면 이 같은 궁금증을 해결할 수 있다. 다음 표를 보자.
+
+
+# method	목적
+# group()	매치된 문자열을 돌려준다.
+# start()	매치된 문자열의 시작 위치를 돌려준다.
+# end()	매치된 문자열의 끝 위치를 돌려준다.
+# span()	매치된 문자열의 (시작, 끝)에 해당하는 튜플을 돌려준다.
+
+# 다음 예로 확인해 보자.
+
+m = p.match("python")
+print(m.group())
+print(m.start())
+print(m.end())
+print(m.span())
+
+# 예상한 대로 결과값이 출력되는 것을 확인할 수 있다.
+# match 메서드를 수행한 결과로 돌려준 match 객체의 start()의 결과값은 항상 0일 수밖에 없다.
+# 왜냐하면 match 메서드는 항상 문자열의 시작부터 조사하기 때문이다.
+
+# 만약 search 메서드를 사용했다면 start() 값은 다음과 같이 다르게 나올 것이다.
+
+m = p.search("3 python")
+print(m.group())
+print(m.start())
+print(m.end())
+print(m.span())
+
+# [모듈 단위로 수행하기]
+# 지금까지 우리는 re.compile 을 사용하여 컴파일된 패턴 객체로 그 이후의 작업을 수행했다.
+# re 모듈은 이것을 좀 축약한 형태로 사용할 수 있는 방법을 제공한다.
+# 다음 예를 보자.
+
+p = re.complie('[a-z]+')
+m = p.match("python")
+
+# 위 코드가 축약된 형태는 다음과 같다.
+
+m = re.match('[a-z]+', "python")
+
+# 위 예처럼 사용하면 컴파일과 match 메서드를 한 번에 수행할 수 있다.
+# 보통 한 번 만든 패턴 객체를 여러번 사용해야 할 때는 이 방법보다 re.complie 을 사용하는 것이 편하다.
+
+
+# 컴파일 옵션
