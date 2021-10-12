@@ -369,3 +369,66 @@ print(m)
 
 
 # IGNORECASE, I
+
+# re.IGNORECASE 또는 re.I 옵션은 대소문자 구별 없이 매치를 수행할 때 사용하는 옵션이다.
+# 다음 예제를 보자.
+
+p = re.compile('[a-z]', re.I)
+print(p.match('python'))
+print(p.match('Python'))
+print(p.match('PYTHON'))
+
+# [a-z] 정규식은 소문자만을 의미하지만 re.I 옵션으로 대소문자 구별없이 매치된다.
+
+
+# MULTILINE, M
+
+# re.MULTILINE 또는 re.M 옵션은 조금 후에 설명할 메타 문자인 ^, $ 와 연관된 옵션이다.
+# 이 메타 문자에 대해 간단히 설명하자면 ^는 문자열의 처음을 의미하고, $는 문자열의 마지막을 의미한다.
+# 예를 들어 정규식이 ^python 인 경우 문자열의 처음은 항상 python으로 시작해야 매치되고, 만약 정규식이 python$ 이라면 문자열의 마지막은 항상 python 으로 끝나야 매치된다는 의미이다.
+
+# 다음 예를 보자.
+
+import re
+p = re.compile("^python\s\w+")
+
+data = """python one
+life is too short
+python two
+you need python
+python three"""
+
+print(p.findall(data))
+
+# 정규식 ^python\s\w+ 은 python이라는 문자열로 시작하고 그 뒤에 whitespace, 그 뒤에 단어가 와야 한다는 의미이다.
+# 검색할 문자열 data는 여러 줄로 이루어져 있다.
+
+# 이 스크립트를 실행하면 다음과 같은 결과를 돌려 준다.
+# ['python one']
+
+# ^ 메타 문자에 의해 python이라는 문자열을 사용한 첫 번째 줄만 매치된 것이다.
+
+# 하지만 ^ 메타 문자를 문자열 전체의 처음이 아니라 각 라인의 처음으로 인식시키고 싶은 경우도 있을 것이다.
+# 이럴 때 사용할 수 있는 옵션이 바로 re.MULTILINE 또는 re.M 이다.
+# 위 코드를 다음과 같이 수정해 보자.
+
+import re
+p = re.compile("^python\s\w+", re.MULTILINE)
+
+data = """python one
+life is too short
+python two
+you need python
+python three"""
+
+print(p.findall(data))
+
+# re.MULTILINE 옵션으로 인해 ^ 메타 문자가 문자열 전체가 아닌 각 줄의 처음이라는 의미를 갖게 되었다.
+# 이 스크립트를 실행하면 다음과 같은 결과가 출력된다.
+
+# ['python one', 'python two', 'python three']
+
+# 즉 re.MULTILINE 옵션은 ^, $ 메타 문자를 문자열의 각 줄마다 적용해 주는 것이다.
+
+
+# VERBOSE,X
