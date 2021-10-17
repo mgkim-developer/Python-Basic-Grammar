@@ -56,3 +56,36 @@ print(re.search('short$', 'Life is too short, you need python'))
 
 
 # \b
+# 다음 예를 보자.
+
+p = re.compile(r'\bclass\b')
+print(p.search('no class at all'))
+
+# \bclass\b 정규식은 앞뒤가 whitespace로 구분된 class라는 단어와 매치됨을 의미한다.
+# 따라서 no class at all의 class라는 단어와 매치됨을 확인할 수 있다.
+
+print(p.search('the declassified algorithm'))
+
+# 위 예의 the declassified algorithm 문자열 안에도 class 문자열이 포함되어 있긴 하지만 whitespace로 구분된 단어가 아니므로 매치되지 않는다.
+
+print(p.search('one subclass is'))
+
+# subclass 문자열 역시 class 앞에 sub 문자열이 더해져 있으므로 매치되지 않음을 알 수 있다.
+
+# \b 메타 문자를 사용할 때 주의해야 할 점이 있다.
+# \b는 파이썬 리터럴 규칙에 의하면 백스페이스(Backspace)를 의미하므로
+# 백스페이스가 아닌 단어 구분자임을 알려주기 위해 r'\bclass\b' 처럼 Raw string 임을 알려주는 기호 r을 반드시 붙여 주어야 한다.\
+
+
+# \B
+# \B 메타 문자는 \b 메타 문자와 반대의 경우이다. 즉 whitespace로 구분된 단어가 아닌 경우에만 매치된다.
+
+p = re.compile (r'\Bclass\B')
+print(p.search('no class at all'))
+print(p.search('the declassified algorithm'))
+print(p.search('one subclass is'))
+
+# class 단어의 앞뒤에 whitespace가 하나라도 있는 경우에는 매치가 안 되는 것을 확인할 수 있다.
+
+
+# 그루핑
