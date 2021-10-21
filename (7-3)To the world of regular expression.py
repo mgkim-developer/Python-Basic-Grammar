@@ -283,3 +283,28 @@ print(m.group())
 
 
 # 문자열 바꾸기
+# sub 메서드를 사용하면 정규식과 매치되는 부분을 다른 문자로 쉽게 바꿀 수 있다.
+# 다음 예를 보자.
+
+p = re.compile('(blue|white|red)')
+print(p.sub('colour', 'blue socks and red shoes'))
+
+# sub 메서드의 첫 번쨰 매개변수는 "바꿀 문자열(replacement)"이 되고, 두 번째 매개변수는 "대상 문자열"이 된다.
+# 위 예에서 볼 수 있듯이 blue 또는 white 또는 red 라는 문자열이 colour라는 문자열로 바뀌는 것을 확인할 수 있다.
+
+# 그런데 딱 한 번만 바꾸고 싶은 경우도 있다.
+# 이렇게 바꾸기 횟수를 제어하려면 다음과 같이 세 번쨰 매개변수로 count 값을 넘기면 된다.
+
+print(p.sub('colour', 'blue socks and red shoes', count=1))
+
+# 처음 일치하는 blue만 colour 라는 문자열로 한 번만 바꾸기가 실행되는 것을 알 수 있다.
+
+# [sub 메서드와 유사한 subn 메서드]
+# subn 역시 sub와 동일한 기능을 하지만 반환 결과를 튜플로 돌려준다는 차이가 있다.
+# 돌려준 튜플의 첫 번쨰 요소는 변경된 문자열이고, 두 번째 요소는 바꾸기가 발생한 횟수이다.
+
+p = re.compile('(blue|white|red)')
+print(p.subn('colour', 'blue socks and red shoes'))
+
+
+# sub 메서드 사용 시 참조 구문 사용하기
