@@ -278,3 +278,123 @@ print(cal2.sum())
 print(cal2.avg())
 
 #-----------------------------------------------------------------------------------------------------------------------
+
+# Q11 모듈 사용 방법
+# C:\doit 디렉터리에 mymod.py 파이썬 모듈이 있다고 가정해 보자. 명령 프롬프트 창에서 파이썬 셸을 열어 이 모듈을 import해서 사용할 수 있는 방법을 모두 기술하시오. (즉 다음과 같이 import mymod를 수행할 때 오류가 없어야 한다.)
+#
+# >>> import mymod
+# >>>
+
+# [Q11 풀이]
+# 이 문제는 모듈 사용방법에 관한 문제이다.
+# 파이썬 셸에서 mymod.py 모듈을 인식하기 위해서는 다음과 같은 3가지 방법이 있을 수 있다.
+
+# 1) sys 모듈 사용하기
+# 다음가 같이 sys.path에 C:\doit 이라는 디렉터리를 추가하면 c:\doit 이라는 디렉터리에 있는 mymod 모듈을 사용할 수 있게 된다.
+
+# import sys
+# sys.path.append("c:\doit")
+# import mymod
+
+# 2) PYTHONPATH 환경 변수 사용하기
+
+# 다음처럼 PYTHONPATH 환경 변수에 c:\doit 디렉터리를 지정하면 c:\doit 디렉터리에 있느 mymod 모듈을 사용할 수 있게 된다.
+
+# C:\Users\home>set PYTHONPATH=c:\doit
+# C:\Users\home>python
+# >>> import mymod
+
+# 3) 현재 디렉토리 사용하기
+# 파이썬 셸을 mymod.py가 있는 위치로 이동하여 실행해도 mymod 모듈을 사용할 수 있게 된다.
+# 왜냐하면 sys.path에는 현재 디렉터리인 . 이 항상 포함되어 있기 떄문이다.
+
+# C:\Users\home>cd c:\doit
+# C:\doit>python
+# >>> import mymod
+
+#-----------------------------------------------------------------------------------------------------------------------
+
+# Q12 오류와 예외 처리
+# 다음 코드의 실행 결과를 예측하고 그 이유에 대해 설명하시오.
+#
+# result = 0
+#
+# try:
+#     [1, 2, 3][3]
+#     "a"+1
+#     4 / 0
+# except TypeError:
+#     result += 1
+# except ZeroDivisionError:
+#     result += 2
+# except IndexError:
+#     result += 3
+# finally:
+#     result += 4
+#
+# print(result)
+
+# [Q12 풀이]
+# 오류와 예외처리에 관한 문항이다.
+
+# 1. result의 초깃값은 0이다.
+# 2. try문 안의 [1, 2, 3][3]이라는 문장 수행 시 indexError 가 발생하여 except
+#     Indexerror: 구문으로 이동하게 되어 result에 3이 더해져 3이 된다.
+# 3. 최종적으로 finally 구문이 실행되어 result에 4가 뎌허재ㅕ 7이 된다.
+# 4. print(result)가 수행되어 result의 최종 값인 7이 출력된다.
+
+#-----------------------------------------------------------------------------------------------------------------------
+
+# Q13 DashInsert 함수
+# DashInsert 함수는 숫자로 구성된 문자열을 입력받은 뒤 문자열 안에서 홀수가 연속되면 두 수 사이에 - 를 추가하고, 짝수가 연속되면 * 를 추가하는 기능을 갖고 있다. DashInsert 함수를 완성하시오.
+#
+# 입력 예시: 4546793
+# 출력 예시: 454*67-9-3
+
+# [Q13 풀이]
+data = "4546793"
+numbers = list(map(int, data))                      # 숫자 문자열을 숫자 리스트로 변경
+result = []
+
+for i, num in enumerate(numbers):
+    result.append(str(num))
+    if i < len(numbers)-1:                          # 다음 수가 있다면
+        is_odd = num % 2 == 1                       # 현재 수가 홀수
+        is_next_odd = numbers[i+1] % 2 == 1         # 다음 수가 홀수
+        if is_odd and is_next_odd:                  # 연속 홀수
+            result.append("-")
+        elif not is_odd and not is_next_odd:         # 연속 짝수
+            result.append("*")
+
+print("".join(result))
+
+#-----------------------------------------------------------------------------------------------------------------------
+
+# Q14 문자열 압축하기
+# 문자열을 입력받아 같은 문자가 연속적으로 반복되는 경우에 그 반복 횟수를 표시해 문자열을 압축하여 표시하시오.
+#
+# 입력 예시: aaabbcccccca
+# 출력 예시: a3b2c6a1
+
+# [Q14 풀이]
+# 먼저 입력 문자열의 문자를 확인하여 동일한 문자가 들어올 경우에는 해당 문자의 숫자값을 증가시킨다.
+# 만약 다른 문자가 들어올 경우에는 해당 문자의 숫자 값을 1로 초기화 하는 방법을 사용하여 작성한 코드이다.
+
+def compress_string(s):
+    _c = ""
+    cnt = 0
+    result = ""
+    for c in s:
+        if c != _c:
+            _c = c
+            if cnt: result += str(cnt)
+            result += c
+            cnt = 1
+        else:
+            cnt += 1
+    if cnt : result += str(cnt)
+    return result
+
+print(compress_string("aaabbcccccca"))          # a3b2c6a1 출력
+
+#-----------------------------------------------------------------------------------------------------------------------
